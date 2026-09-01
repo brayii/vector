@@ -1,0 +1,2 @@
+export function rankingMetrics(relevances,k=5){ const top=relevances.slice(0,k); const first=top.findIndex(Boolean); const recall=relevances.some(Boolean)?(top.some(Boolean)?1:0):1; const dcg=top.reduce((s,r,i)=>s+(r?1/Math.log2(i+2):0),0); return { [`recall@${k}`]:recall, mrr:first<0?0:1/(first+1), [`ndcg@${k}`]:dcg }; }
+export function evaluate(model){ return { model_id:model.model_id, status:'exploratory', reason:'Insufficient held-out relevance judgments for statistically valid promotion', metrics:{} }; }

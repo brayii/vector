@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "objectives": {
+    "context_retrieval": {
+      "baseline": "lexical-v1",
+      "champion": "lexical-v1",
+      "challengers": [],
+      "rollback_target": null
+    }
+  }
+}

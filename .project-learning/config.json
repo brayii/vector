@@ -1,0 +1,25 @@
+{
+  "framework_version": "1.0.0",
+  "schema_version": 1,
+  "lifecycle": {
+    "reevaluate_every_new_tasks": 10,
+    "min_tasks_for_tfidf": 10,
+    "min_tasks_for_supervised_model": 30,
+    "min_positive_examples_per_class": 5,
+    "min_distinct_task_families": 3,
+    "max_near_duplicate_fraction": 0.25
+  },
+  "resources": {
+    "allow_dependency_install": false,
+    "allow_network": false,
+    "max_training_seconds": 300
+  },
+  "promotion": {
+    "primary_metric": "ndcg@5",
+    "min_absolute_improvement": 0.01,
+    "confidence_level": 0.95,
+    "bootstrap_samples": 2000,
+    "max_secondary_regression": 0.02
+  },
+  "retention": { "temporary_days": 30, "exports_days": 90 }
+}

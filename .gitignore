@@ -1,0 +1,23 @@
+# Installed dependencies (restored with npm install)
+node_modules/
+
+# Generated app/build state
+.next/
+.vinext/
+.wrangler/
+dist/
+*.tsbuildinfo
+
+# Machine-local runtime state
+.vector-runtime.json
+*.log
+.env*
+
+# SQLite transient files; keep learning.db itself
+*.db-wal
+*.db-shm
+*.db-journal
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

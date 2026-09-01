@@ -1,0 +1,22 @@
+{
+  "framework_initialized": true,
+  "schema_version": 1,
+  "total_completed_tasks": 15,
+  "total_usable_training_examples": 15,
+  "active_objectives": [
+    "context_retrieval"
+  ],
+  "current_champions": {
+    "context_retrieval": "lexical-v1"
+  },
+  "last_training_time": null,
+  "last_evaluation_time": null,
+  "next_lifecycle_threshold": 0,
+  "pending_lifecycle_work": "none",
+  "drift_monitoring_status": "baseline; insufficient history",
+  "known_limitations": [
+    "Node.js implementation because Python is unavailable",
+    "Insufficient task history for learned challengers"
+  ],
+  "updated_at": "2026-09-01T10:07:20.412Z"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "vector-project-learning",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "learning": "node .project-learning/framework/lifecycle.js",
+    "test": "node --test .project-learning/tests/*.test.js hangar/*.test.js"
+  },
+  "engines": { "node": ">=24" }
+}

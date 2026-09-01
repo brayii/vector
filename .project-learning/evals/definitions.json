@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "objectives": {
+    "context_retrieval": [
+      "recall@5",
+      "mrr",
+      "ndcg@5"
+    ]
+  }
+}

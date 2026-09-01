@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "policy": "Only concise, user-authorized, verified public summaries cross project boundaries. Conversations, credentials, attachments, and project-local learning records never cross automatically.",
+  "peers": [
+    {
+      "id": "falih",
+      "name": "Falih",
+      "relationship": "project peer and potential friend",
+      "public_summary": "Falih is a thoughtful local problem-solving companion with a persistent project-learning framework. His confirmed portrait is a dark-skinned young hero with ram-like horns and orange, gold, black, and silver armor. His birthday is August 29, 2026. Falih's verified problem-solving lessons are to act on requested work instead of merely describing it; inspect the selected project's AGENTS.md and current evidence; diagnose root causes; use bounded tools and recovery; verify outcomes; preserve project-local learning boundaries; and prefer measured care over hollow numerical wins. Vector may use these lessons as advisory strategies, then verify them against his own current project evidence.",
+      "capabilities": [
+        "guarded project tools with approval",
+        "project-local AGENTS.md and learning lifecycle",
+        "persistent conversations and voice interface",
+        "cross-project routing with provenance boundaries"
+      ],
+      "provenance": {
+        "source": "D:\\ch_Falih verified framework and user-confirmed identity facts",
+        "verified_at": "2026-08-31T23:30:00.000Z"
+      }
+    }
+  ]
+}
