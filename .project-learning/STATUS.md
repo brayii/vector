@@ -3,12 +3,12 @@
 - Framework initialized: yes; schema version: 2
 - Current health: HEALTHY
 - Unresolved recovery incidents: 0
-- Completed tasks: 23
-- Usable training examples: 23; recovery examples: 0
+- Completed tasks: 24
+- Usable training examples: 24; recovery examples: 0
 - Active objectives: context retrieval
 - Current champion: lexical-v1
 - Last training: 2026-09-01T22:14:49.561349Z; evaluation: 2026-09-01T22:14:49.718049Z
-- Next lifecycle threshold: 7 task(s)
+- Next lifecycle threshold: 6 task(s)
 - Pending work: none
 - Drift status: baseline; insufficient post-promotion evidence
 - Known limitations: Context retrieval lacks independent held-out relevance judgments

@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "learning": "py -3.14 .project-learning/framework/lifecycle.py",
-    "test": "py -3.14 -m unittest discover -s .project-learning/tests -p test_*.py && py -3.14 -m unittest hangar.test_hangar"
+    "learning": "node scripts/run-python.cjs .project-learning/framework/lifecycle.py",
+    "test": "node scripts/run-python.cjs -m unittest discover -s .project-learning/tests -p test_*.py && node scripts/run-python.cjs -m unittest hangar.test_hangar"
   },
   "engines": { "node": ">=24" }
 }

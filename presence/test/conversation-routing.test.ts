@@ -12,10 +12,14 @@ test('new conversation removes prior context and restores one welcome message', 
   assert.equal(reset.draft, '');
 });
 
-test('project routing selects explicit Windows paths and preserves scope for follow-ups', () => {
+test('project routing selects Windows and POSIX paths and preserves scope for follow-ups', () => {
   assert.equal(explicitProjectPath('work in D:\\AI_bunny_sim'), 'D:\\AI_bunny_sim');
   assert.equal(explicitProjectPath('use "D:\\My Project" now'), 'D:\\My Project');
+  assert.equal(explicitProjectPath('work in /home/angel/vector'), '/home/angel/vector');
+  assert.equal(explicitProjectPath('use "/home/angel/My Project" now'), '/home/angel/My Project');
+  assert.equal(explicitProjectPath('work in ~/vector'), '~/vector');
   assert.equal(resolveProjectTarget('continue', 'D:\\vector'), 'D:\\vector');
+  assert.equal(resolveProjectTarget('continue', '/home/angel/vector'), '/home/angel/vector');
 });
 
 test('clear project target returns neutral scope', () => {

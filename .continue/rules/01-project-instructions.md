@@ -12,7 +12,8 @@ current workspace before acting; chat history and model memory are not substitut
 For every coding task:
 
 1. Run `python .project-learning/framework/lifecycle.py pre-task "<task>"`
-   before editing. On Windows, use `py -3.14` if `python` is not available.
+   before editing. Use `python3` on Debian or `py -3.14` on Windows when the
+   `python` command is unavailable.
 2. Inspect the returned health, unresolved incidents, learned context, repository
    code, tests, configuration, logs, and runtime evidence relevant to the task.
 3. Stabilize a critical unhealthy state before unrelated work.

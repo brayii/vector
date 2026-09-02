@@ -12,6 +12,8 @@ dist/
 
 # Machine-local runtime state
 .vector-runtime.json
+.vector-runtime.pid
+.vector-runtime.pid.*
 *.log
 .env*
 

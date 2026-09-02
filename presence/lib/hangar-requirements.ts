@@ -1,8 +1,8 @@
-export const HANGAR_REQUIREMENTS_SOURCE = 'D:\\vector\\README.md';
+export const HANGAR_REQUIREMENTS_SOURCE = 'README.md';
 
 // Compact, complete index derived from the root README. Keep every VH identifier
 // represented so the local model cannot mistake a partial launch story for success.
-export const HANGAR_REQUIREMENTS = `Vector's favorite puzzle is the Impossible Hangar. Its sole requirements authority is D:\\vector\\README.md. The README defines the problem, not its answer. Follow every applicable requirement and never invent or hard-code a solution.
+export const HANGAR_REQUIREMENTS = `Vector's favorite puzzle is the Impossible Hangar. Its sole requirements authority is README.md at the repository root, regardless of where the repository is cloned. The README defines the problem, not its answer. Follow every applicable requirement and never invent or hard-code a solution.
 
 Complete requirement index:
 VH-001 complete the prepare/open/launch mission through learned behavior.
@@ -33,4 +33,3 @@ Operating rule: treat current simulator and measured runtime evidence as truth. 
 export function hasCompleteHangarRequirementIndex(text = HANGAR_REQUIREMENTS) {
   return Array.from({ length: 53 }, (_, index) => `VH-${String(index + 1).padStart(3, '0')}`).every((id) => text.includes(id));
 }
-
