@@ -1,10 +1,11 @@
 {
   "framework_version": "1.0.0",
-  "schema_version": 1,
+  "schema_version": 2,
   "lifecycle": {
     "reevaluate_every_new_tasks": 10,
     "min_tasks_for_tfidf": 10,
     "min_tasks_for_supervised_model": 30,
+    "min_recovery_incidents_for_ranking": 20,
     "min_positive_examples_per_class": 5,
     "min_distinct_task_families": 3,
     "max_near_duplicate_fraction": 0.25
@@ -20,6 +21,16 @@
     "confidence_level": 0.95,
     "bootstrap_samples": 2000,
     "max_secondary_regression": 0.02
+  },
+  "health": {
+    "max_last_success_age_seconds": 86400,
+    "stall_repeated_error_threshold": 3,
+    "stall_repeated_action_threshold": 3,
+    "timeout_threshold": 2
+  },
+  "recovery": {
+    "max_attempts_per_incident": 5,
+    "max_same_action_repeats": 2
   },
   "retention": { "temporary_days": 30, "exports_days": 90 }
 }

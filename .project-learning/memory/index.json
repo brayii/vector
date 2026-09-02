@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "count": 5,
+  "rebuilt_at": "2026-09-02T04:24:59.061822Z",
+  "repository_revision": "e20878028c0c",
+  "chunks": [
+    {
+      "chunk_id": "task_outcome_task_1788323001122_9f71171e",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "e20878028c0c"
+    },
+    {
+      "chunk_id": "task_outcome_task_1788300740815_83e7653e",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "e20878028c0c"
+    },
+    {
+      "chunk_id": "task_outcome_task_1788298570233_4c4fa133",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "e20878028c0c"
+    },
+    {
+      "chunk_id": "task_outcome_task_1788297886125_0b851e81",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "0fed4623618f"
+    },
+    {
+      "chunk_id": "initial_repository",
+      "topic": "repository",
+      "confidence": 1.0,
+      "last_verified_revision": "unversioned"
+    }
+  ]
+}

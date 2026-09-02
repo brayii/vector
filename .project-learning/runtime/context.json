@@ -1,46 +1,117 @@
 {
-  "task": "Add minimal gitignore for portable Vector clone with persistent identity and learning memory",
-  "repository_revision": "f5925f9e4916",
+  "task": "Review pending Vector changes, fix release blockers, commit, and push to origin main",
+  "repository_revision": "e20878028c0c",
   "relevant_memory": [
+    {
+      "chunk_id": "task_outcome_task_1788298570233_4c4fa133",
+      "topic": "verified_task_outcome",
+      "content": "Migrated the complete project-learning framework from duplicate JavaScript modules to authoritative Python 3.14 modules; preserved schema-2 database and prior task history; Python tests and Hangar tests passed without resource warnings",
+      "confidence": 0.8,
+      "score": 2
+    },
+    {
+      "chunk_id": "task_outcome_task_1788300740815_83e7653e",
+      "topic": "verified_task_outcome",
+      "content": "Converted Hangar environment, generator, evaluator, and Q-learning agent to Python; removed JavaScript Hangar; 18 Python tests passed; trained 1600 episodes and achieved 120/120 held-out launches at 6.07 mean actions. README audit: 39 requirements implemented, 14 partial, so puzzle is not yet fully solved.",
+      "confidence": 0.8,
+      "score": 2
+    },
     {
       "chunk_id": "initial_repository",
       "topic": "repository",
       "content": "Initial repository files: AGENTS_new.md, package.json, Vector.png",
-      "confidence": 1,
+      "confidence": 1.0,
+      "score": 1
+    },
+    {
+      "chunk_id": "task_outcome_task_1788297886125_0b851e81",
+      "topic": "verified_task_outcome",
+      "content": "Repaired verified framework defects: schema v2, complete Step 3 responsibilities, health/stall/recovery commands, bounded recovery evidence, JSONL memory, enriched context/status, atomic locking, dataset governance, model/evaluation persistence, and 21 passing tests",
+      "confidence": 0.8,
       "score": 1
     }
   ],
-  "likely_files": [],
+  "likely_files": [
+    {
+      "file_path": "Start Vector.cmd",
+      "uses": 1,
+      "relevant": 1,
+      "score": 2
+    },
+    {
+      "file_path": "Vector.png",
+      "uses": 2,
+      "relevant": 1,
+      "score": 2
+    },
+    {
+      "file_path": "presence/public/vector.png",
+      "uses": 1,
+      "relevant": 1,
+      "score": 2
+    },
+    {
+      "file_path": "start-vector.ps1",
+      "uses": 1,
+      "relevant": 1,
+      "score": 2
+    },
+    {
+      "file_path": ".project-learning/framework/lifecycle.js",
+      "uses": 1,
+      "relevant": 1,
+      "score": 1
+    },
+    {
+      "file_path": "AGENTS.md",
+      "uses": 1,
+      "relevant": 1,
+      "score": 1
+    },
+    {
+      "file_path": "AGENTS_new.md",
+      "uses": 1,
+      "relevant": 1,
+      "score": 1
+    },
+    {
+      "file_path": "D:/AI_bunny_sim/AGENTS.md",
+      "uses": 1,
+      "relevant": 1,
+      "score": 1
+    }
+  ],
   "known_failures": [],
+  "unresolved_recovery_incidents": [],
   "related_decisions": [],
   "similar_tasks": [
     {
-      "task_id": "task_1788225172951_d31d1164",
-      "request_text": "Study Vector standalone conversation, implement safe friendship knowledge exchange with Falih, and improve both project-learning systems without merging private state",
-      "task_type": "general",
-      "score": 4
-    },
-    {
-      "task_id": "task_1788218807560_c45394a5",
-      "request_text": "Train Vector's project learning when eligible and give the standalone a useful local reasoning capability",
+      "task_id": "task_1788221229660_a71c0b20",
+      "request_text": "Diagnose why Vector standalone is stuck on the bunny simulator and fails to follow its AGENTS.md and README.txt",
       "task_type": "general",
       "score": 3
     },
     {
-      "task_id": "task_1788221879804_67671540",
-      "request_text": "Add automated tests for project routing and conversation reset",
-      "task_type": "general",
-      "score": 3
-    },
-    {
-      "task_id": "task_1788234055213_c6f246db",
-      "request_text": "Share verified public problem-solving lessons with Falih and return Vector's verified lessons through isolated peer cards",
+      "task_id": "task_1788256908226_a1fc56fd",
+      "request_text": "Fix Vector launch failure and managed shutdown",
       "task_type": "general",
       "score": 3
     },
     {
       "task_id": "task_1788216478792_74ce34eb",
       "request_text": "Build Vector as a standalone animated speaking and microphone-capable presence using Falih as a peer reference",
+      "task_type": "general",
+      "score": 2
+    },
+    {
+      "task_id": "task_1788218807560_c45394a5",
+      "request_text": "Train Vector's project learning when eligible and give the standalone a useful local reasoning capability",
+      "task_type": "general",
+      "score": 2
+    },
+    {
+      "task_id": "task_1788225172951_d31d1164",
+      "request_text": "Study Vector standalone conversation, implement safe friendship knowledge exchange with Falih, and improve both project-learning systems without merging private state",
       "task_type": "general",
       "score": 2
     }

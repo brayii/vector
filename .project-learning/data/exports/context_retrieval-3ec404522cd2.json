@@ -1,0 +1,192 @@
+{
+  "dataset_id": "context_retrieval-3ec404522cd2",
+  "created_at": "2026-09-01T22:14:49.370480Z",
+  "objective": "context_retrieval",
+  "included_task_ids": [
+    "task_1788215262960_d8c0787d",
+    "task_1788216160983_b2f5f26d",
+    "task_1788216478792_74ce34eb",
+    "task_1788218807560_c45394a5",
+    "task_1788221229660_a71c0b20",
+    "task_1788221878843_6a7d04e9",
+    "task_1788221879104_bf5f4f14",
+    "task_1788221879337_74ee0d75",
+    "task_1788221879569_b29f1cea",
+    "task_1788221879804_67671540",
+    "task_1788225172951_d31d1164",
+    "task_1788234055213_c6f246db",
+    "task_1788244874191_ad1581ec",
+    "task_1788256908226_a1fc56fd",
+    "task_1788257190251_6de6fa4b",
+    "task_1788259263496_cd8a85c0",
+    "task_1788279641798_0aab29bd",
+    "task_1788294125062_9cd3820d",
+    "task_1788297886125_0b851e81",
+    "task_1788298570233_4c4fa133",
+    "task_1788300740815_83e7653e"
+  ],
+  "repository_revision_range": [
+    "unversioned",
+    "e20878028c0c"
+  ],
+  "label_rules": "verified structured evidence only",
+  "feature_rules": "lexical-v1",
+  "exclusions": {
+    "exact_duplicates": 0,
+    "near_duplicates": "not yet measured"
+  },
+  "split_strategy": "chronological-80-20",
+  "random_seed": 0,
+  "duplicate_policy": "exact normalized request deduplication",
+  "train": [
+    {
+      "task_id": "task_1788215262960_d8c0787d",
+      "timestamp": "2026-08-31T22:27:42.960Z",
+      "request_text": "Initialize project and Happy birthday you are born",
+      "task_type": "initialization",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788216160983_b2f5f26d",
+      "timestamp": "2026-08-31T22:42:40.983Z",
+      "request_text": "Rename AGENTS_new.md to AGENTS.md",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788216478792_74ce34eb",
+      "timestamp": "2026-08-31T22:47:58.792Z",
+      "request_text": "Build Vector as a standalone animated speaking and microphone-capable presence using Falih as a peer reference",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788218807560_c45394a5",
+      "timestamp": "2026-08-31T23:26:47.560Z",
+      "request_text": "Train Vector's project learning when eligible and give the standalone a useful local reasoning capability",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221229660_a71c0b20",
+      "timestamp": "2026-09-01T00:07:09.660Z",
+      "request_text": "Diagnose why Vector standalone is stuck on the bunny simulator and fails to follow its AGENTS.md and README.txt",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221878843_6a7d04e9",
+      "timestamp": "2026-09-01T00:17:58.843Z",
+      "request_text": "Add a New Chat button that clears conversation context",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221879104_bf5f4f14",
+      "timestamp": "2026-09-01T00:17:59.104Z",
+      "request_text": "Remove bunny-specific bias from Vector's general identity prompt",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221879337_74ee0d75",
+      "timestamp": "2026-09-01T00:17:59.337Z",
+      "request_text": "Add a Clear Project Target control",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221879569_b29f1cea",
+      "timestamp": "2026-09-01T00:17:59.569Z",
+      "request_text": "Create a health indicator for Ollama and the active local model",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788221879804_67671540",
+      "timestamp": "2026-09-01T00:17:59.804Z",
+      "request_text": "Add automated tests for project routing and conversation reset",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788225172951_d31d1164",
+      "timestamp": "2026-09-01T01:12:52.951Z",
+      "request_text": "Study Vector standalone conversation, implement safe friendship knowledge exchange with Falih, and improve both project-learning systems without merging private state",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788234055213_c6f246db",
+      "timestamp": "2026-09-01T03:40:55.213Z",
+      "request_text": "Share verified public problem-solving lessons with Falih and return Vector's verified lessons through isolated peer cards",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788244874191_ad1581ec",
+      "timestamp": "2026-09-01T06:41:14.191Z",
+      "request_text": "--task Create the first generic Impossible Hangar environment kernel without encoding a solution",
+      "task_type": "general",
+      "repository_revision": "unversioned"
+    },
+    {
+      "task_id": "task_1788256908226_a1fc56fd",
+      "timestamp": "2026-09-01T10:01:48.226Z",
+      "request_text": "Fix Vector launch failure and managed shutdown",
+      "task_type": "general",
+      "repository_revision": "f5925f9e4916"
+    },
+    {
+      "task_id": "task_1788257190251_6de6fa4b",
+      "timestamp": "2026-09-01T10:06:30.251Z",
+      "request_text": "Add minimal gitignore for portable Vector clone with persistent identity and learning memory",
+      "task_type": "general",
+      "repository_revision": "f5925f9e4916"
+    },
+    {
+      "task_id": "task_1788259263496_cd8a85c0",
+      "timestamp": "2026-09-01T10:41:03.496Z",
+      "request_text": "Add deterministic varied Impossible Hangar instance generation with held-out seed separation",
+      "task_type": "general",
+      "repository_revision": "0fed4623618f"
+    }
+  ],
+  "test": [
+    {
+      "task_id": "task_1788279641798_0aab29bd",
+      "timestamp": "2026-09-01T16:20:41.798Z",
+      "request_text": "Add ML-compatible hangar episode feedback and multidimensional evaluation metrics",
+      "task_type": "general",
+      "repository_revision": "0fed4623618f"
+    },
+    {
+      "task_id": "task_1788294125062_9cd3820d",
+      "timestamp": "2026-09-01T20:22:05.062Z",
+      "request_text": "Create and evaluate the first learned tabular baseline policy for Impossible Hangar",
+      "task_type": "general",
+      "repository_revision": "0fed4623618f"
+    },
+    {
+      "task_id": "task_1788297886125_0b851e81",
+      "timestamp": "2026-09-01T21:24:46.125Z",
+      "request_text": "Verify repaired AGENTS.md framework compliance after audit",
+      "task_type": "general",
+      "repository_revision": "0fed4623618f"
+    },
+    {
+      "task_id": "task_1788298570233_4c4fa133",
+      "timestamp": "2026-09-01T21:36:10.238107Z",
+      "request_text": "Verify authoritative Python framework migration and preserve canonical history",
+      "task_type": "general",
+      "repository_revision": "e20878028c0c"
+    },
+    {
+      "task_id": "task_1788300740815_83e7653e",
+      "timestamp": "2026-09-01T22:12:20.849755Z",
+      "request_text": "Convert Impossible Hangar to Python and satisfy README requirements through learned behavior and held-out evaluation",
+      "task_type": "general",
+      "repository_revision": "e20878028c0c"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "model_id": "lexical-context_retrieval-3ec404522cd2",
+  "objective": "context_retrieval",
+  "type": "deterministic-lexical",
+  "dataset_id": "context_retrieval-3ec404522cd2",
+  "created_at": "2026-09-01T22:14:49.561349Z",
+  "status": "challenger",
+  "training_seconds": 0.19391420000465587
+}

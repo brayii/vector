@@ -1,12 +1,14 @@
 # Project Learning Status
 
-- Framework initialized: yes
-- Schema version: 1
-- Completed tasks: 15
-- Usable training examples: 15
+- Framework initialized: yes; schema version: 2
+- Current health: HEALTHY
+- Unresolved recovery incidents: 0
+- Completed tasks: 22
+- Usable training examples: 22; recovery examples: 0
 - Active objectives: context retrieval
 - Current champion: lexical-v1
-- Next lifecycle threshold: 0 task(s)
+- Last training: 2026-09-01T22:14:49.561349Z; evaluation: 2026-09-01T22:14:49.718049Z
+- Next lifecycle threshold: 8 task(s)
 - Pending work: none
-- Drift monitoring: baseline; insufficient history
-- Known limitations: Node.js implementation because Python is unavailable; Insufficient task history for learned challengers
+- Drift status: baseline; insufficient post-promotion evidence
+- Known limitations: Context retrieval lacks independent held-out relevance judgments

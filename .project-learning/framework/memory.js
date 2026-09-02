@@ -1,2 +1,0 @@
-import path from 'node:path'; import { ROOT, ensureDb, writeJsonAtomic } from './common.js';
-export function rebuildMemory(){ const conn=ensureDb(); const chunks=conn.prepare('SELECT * FROM memory_chunks WHERE active=1 ORDER BY updated_at DESC').all(); conn.close(); writeJsonAtomic(path.join(ROOT,'memory','index.json'),{version:1,count:chunks.length}); writeJsonAtomic(path.join(ROOT,'memory','chunks.json'),chunks); return {count:chunks.length}; }
