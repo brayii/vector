@@ -1,9 +1,15 @@
 {
   "version": 1,
-  "count": 5,
-  "rebuilt_at": "2026-09-02T04:24:59.061822Z",
-  "repository_revision": "e20878028c0c",
+  "count": 6,
+  "rebuilt_at": "2026-09-02T04:32:23.777683Z",
+  "repository_revision": "6f9a36bb1893",
   "chunks": [
+    {
+      "chunk_id": "task_outcome_task_1788323400312_1d6ec55f",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "6f9a36bb1893"
+    },
     {
       "chunk_id": "task_outcome_task_1788323001122_9f71171e",
       "topic": "verified_task_outcome",

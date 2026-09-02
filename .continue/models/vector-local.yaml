@@ -1,0 +1,26 @@
+name: Vector Local Ollama
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Vector Qwen3 4B
+    provider: ollama
+    model: qwen3:4b
+    apiBase: http://127.0.0.1:11434
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+    capabilities:
+      - tool_use
+    defaultCompletionOptions:
+      contextLength: 16384
+      maxTokens: 4096
+      temperature: 0.2
+    autocompleteOptions:
+      debounceDelay: 350
+      maxPromptTokens: 2048
+      onlyMyCode: true
+      useImports: true
+      useRecentlyEdited: true

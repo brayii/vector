@@ -3,8 +3,8 @@
   "schema_version": 2,
   "current_health": "HEALTHY",
   "unresolved_recovery_incidents": 0,
-  "total_completed_tasks": 22,
-  "total_usable_training_examples": 22,
+  "total_completed_tasks": 23,
+  "total_usable_training_examples": 23,
   "usable_recovery_examples": 0,
   "active_objectives": [
     "context_retrieval"
@@ -14,11 +14,11 @@
   },
   "last_training_time": "2026-09-01T22:14:49.561349Z",
   "last_evaluation_time": "2026-09-01T22:14:49.718049Z",
-  "next_lifecycle_threshold": 8,
+  "next_lifecycle_threshold": 7,
   "pending_lifecycle_work": "none",
   "drift_monitoring_status": "baseline; insufficient post-promotion evidence",
   "known_limitations": [
     "Context retrieval lacks independent held-out relevance judgments"
   ],
-  "updated_at": "2026-09-02T04:24:59.188512Z"
+  "updated_at": "2026-09-02T04:32:23.881913Z"
 }
