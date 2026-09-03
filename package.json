@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "learning": "node scripts/run-python.cjs .project-learning/framework/lifecycle.py",
-    "test": "node scripts/run-python.cjs -m unittest discover -s .project-learning/tests -p test_*.py && node scripts/run-python.cjs -m unittest hangar.test_hangar"
+    "test": "node scripts/run-python.cjs -m unittest discover -s .project-learning/tests -p test_*.py && node scripts/run-python.cjs -m unittest hangar.test_hangar && node scripts/run-python.cjs -m unittest discover -s tests -p test_*.py && node --test agent/test_agent.cjs"
   },
   "engines": { "node": ">=24" }
 }

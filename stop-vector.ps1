@@ -7,7 +7,7 @@ $stopped = 0
 foreach ($saved in @($record.processes)) {
   $process = Get-Process -Id ([int]$saved.pid) -ErrorAction SilentlyContinue
   if ($process -and $process.ProcessName -eq $saved.name -and $process.StartTime.ToUniversalTime().Ticks -eq [int64]$saved.startTimeUtcTicks) {
-    Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+    & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
     $stopped += 1
   }
 }

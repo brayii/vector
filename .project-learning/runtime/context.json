@@ -1,32 +1,32 @@
 {
-  "task": "Make Vector clone-compatible with Debian and Windows, perform a cross-platform code review, test, commit, and push to origin main",
-  "repository_revision": "d969d64d58ee",
+  "task": "Install qwen-coder-7b, verify Vector, commit reviewed changes, and push origin main",
+  "repository_revision": "d57e7c5744c9",
   "relevant_memory": [
     {
-      "chunk_id": "task_outcome_task_1788323400312_1d6ec55f",
+      "chunk_id": "task_outcome_task_1788459281095_2ab1ee51",
       "topic": "verified_task_outcome",
-      "content": "Reviewed Continue against current official documentation; added VS Code extension recommendation, workspace-local qwen3:4b Ollama model with tool use and bounded context, concrete AGENTS lifecycle rule, setup diagnostics, and three passing configuration tests; verified Ollama endpoint/model and framework tests",
+      "content": "Implemented VECTOR_GUI_AGENT_UPGRADE_v2: standalone loopback agent backend with centralized qwen-coder-7b-local configuration, repository-scoped file/search/diff tools, approved argument-array commands, real validated projects, AGENTS and project-learning lifecycle integration, grounded GUI activity, read-only reviews, calm failure states, attachment vision support, one canonical chat, and Windows/Linux supervision; 34 automated tests, TypeScript, production build, security scans, runtime start/stop, cross-origin rejection, and missing-model reporting verified; required 7B alias is not installed on this home machine so real 7B inference remains to verify at the office",
       "confidence": 0.8,
-      "score": 3
-    },
-    {
-      "chunk_id": "task_outcome_task_1788298570233_4c4fa133",
-      "topic": "verified_task_outcome",
-      "content": "Migrated the complete project-learning framework from duplicate JavaScript modules to authoritative Python 3.14 modules; preserved schema-2 database and prior task history; Python tests and Hangar tests passed without resource warnings",
-      "confidence": 0.8,
-      "score": 2
-    },
-    {
-      "chunk_id": "task_outcome_task_1788300740815_83e7653e",
-      "topic": "verified_task_outcome",
-      "content": "Converted Hangar environment, generator, evaluator, and Q-learning agent to Python; removed JavaScript Hangar; 18 Python tests passed; trained 1600 episodes and achieved 120/120 held-out launches at 6.07 mean actions. README audit: 39 requirements implemented, 14 partial, so puzzle is not yet fully solved.",
-      "confidence": 0.8,
-      "score": 2
+      "score": 6
     },
     {
       "chunk_id": "task_outcome_task_1788323001122_9f71171e",
       "topic": "verified_task_outcome",
       "content": "Reviewed full pending Vector change set; fixed training eligibility diversity guard and FAILED_SAFE health precedence; Python framework, Python Hangar, standalone tests, TypeScript check, and production build passed; no secret patterns or whitespace errors found",
+      "confidence": 0.8,
+      "score": 3
+    },
+    {
+      "chunk_id": "task_outcome_task_1788323400312_1d6ec55f",
+      "topic": "verified_task_outcome",
+      "content": "Reviewed Continue against current official documentation; added VS Code extension recommendation, workspace-local qwen3:4b Ollama model with tool use and bounded context, concrete AGENTS lifecycle rule, setup diagnostics, and three passing configuration tests; verified Ollama endpoint/model and framework tests",
+      "confidence": 0.8,
+      "score": 2
+    },
+    {
+      "chunk_id": "task_outcome_task_1788323763903_ac601022",
+      "topic": "verified_task_outcome",
+      "content": "Made Vector portable across Windows and Debian: added safe Debian start/stop scripts, portable Python npm launcher, setup guide, LF/executable policy, POSIX project routing, clone-relative README authority, and portability tests; verified POSIX syntax, 23 Python tests, 11 presence tests, TypeScript, and production build",
       "confidence": 0.8,
       "score": 2
     },
@@ -58,12 +58,6 @@
       "score": 2
     },
     {
-      "file_path": "presence/test/conversation-routing.test.ts",
-      "uses": 1,
-      "relevant": 1,
-      "score": 2
-    },
-    {
       "file_path": "start-vector.ps1",
       "uses": 1,
       "relevant": 1,
@@ -86,6 +80,12 @@
       "uses": 1,
       "relevant": 1,
       "score": 1
+    },
+    {
+      "file_path": "D:/AI_bunny_sim/AGENTS.md",
+      "uses": 1,
+      "relevant": 1,
+      "score": 1
     }
   ],
   "known_failures": [],
@@ -93,34 +93,34 @@
   "related_decisions": [],
   "similar_tasks": [
     {
-      "task_id": "task_1788323400312_1d6ec55f",
-      "request_text": "Research and improve the VS Code Continue extension configuration, review, test, commit, and push to origin main",
-      "task_type": "general",
-      "score": 9
-    },
-    {
       "task_id": "task_1788323001122_9f71171e",
       "request_text": "Review pending Vector changes, fix release blockers, commit, and push to origin main",
       "task_type": "general",
-      "score": 8
+      "score": 7
     },
     {
-      "task_id": "task_1788257190251_6de6fa4b",
-      "request_text": "Add minimal gitignore for portable Vector clone with persistent identity and learning memory",
+      "task_id": "task_1788323763903_ac601022",
+      "request_text": "Make Vector clone-compatible with Debian and Windows, perform a cross-platform code review, test, commit, and push to origin main",
       "task_type": "general",
-      "score": 4
+      "score": 6
     },
     {
-      "task_id": "task_1788221229660_a71c0b20",
-      "request_text": "Diagnose why Vector standalone is stuck on the bunny simulator and fails to follow its AGENTS.md and README.txt",
+      "task_id": "task_1788323400312_1d6ec55f",
+      "request_text": "Research and improve the VS Code Continue extension configuration, review, test, commit, and push to origin main",
       "task_type": "general",
-      "score": 3
+      "score": 5
     },
     {
-      "task_id": "task_1788225172951_d31d1164",
-      "request_text": "Study Vector standalone conversation, implement safe friendship knowledge exchange with Falih, and improve both project-learning systems without merging private state",
+      "task_id": "task_1788216478792_74ce34eb",
+      "request_text": "Build Vector as a standalone animated speaking and microphone-capable presence using Falih as a peer reference",
       "task_type": "general",
-      "score": 3
+      "score": 2
+    },
+    {
+      "task_id": "task_1788218807560_c45394a5",
+      "request_text": "Train Vector's project learning when eligible and give the standalone a useful local reasoning capability",
+      "task_type": "general",
+      "score": 2
     }
   ],
   "retriever_versions": {

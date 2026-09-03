@@ -37,6 +37,14 @@ class PortabilityTests(unittest.TestCase):
         self.assertIn("HANGAR_REQUIREMENTS_SOURCE = 'README.md'", source)
         self.assertNotIn("D:\\\\vector", source)
 
+    def test_windows_launcher_tracks_one_validated_supervisor_tree(self) -> None:
+        start = (ROOT / "start-vector.ps1").read_text(encoding="utf-8")
+        stop = (ROOT / "stop-vector.ps1").read_text(encoding="utf-8")
+        self.assertNotIn("existingRuntimeIds", start)
+        self.assertNotIn("ownedProcesses", start)
+        self.assertIn("taskkill.exe /PID $process.Id /T /F", start)
+        self.assertIn("taskkill.exe /PID $process.Id /T /F", stop)
+
 
 if __name__ == "__main__":
     unittest.main()

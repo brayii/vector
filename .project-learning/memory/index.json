@@ -1,9 +1,27 @@
 {
   "version": 1,
-  "count": 7,
-  "rebuilt_at": "2026-09-02T04:39:48.727062Z",
-  "repository_revision": "d969d64d58ee",
+  "count": 10,
+  "rebuilt_at": "2026-09-03T18:48:21.396443Z",
+  "repository_revision": "d57e7c5744c9",
   "chunks": [
+    {
+      "chunk_id": "task_outcome_task_1788461039571_85a41562",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "d57e7c5744c9"
+    },
+    {
+      "chunk_id": "task_outcome_task_1788459281095_2ab1ee51",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "d57e7c5744c9"
+    },
+    {
+      "chunk_id": "task_outcome_task_1788433552907_d076a880",
+      "topic": "verified_task_outcome",
+      "confidence": 0.8,
+      "last_verified_revision": "d57e7c5744c9"
+    },
     {
       "chunk_id": "task_outcome_task_1788323763903_ac601022",
       "topic": "verified_task_outcome",

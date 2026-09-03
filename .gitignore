@@ -15,6 +15,7 @@ dist/
 .vector-runtime.pid
 .vector-runtime.pid.*
 *.log
+*.vector-*.tmp
 .env*
 
 # SQLite transient files; keep learning.db itself

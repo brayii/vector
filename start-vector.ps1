@@ -4,11 +4,13 @@ $vectorRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $presenceRoot = Join-Path $vectorRoot 'presence'
 $runtimeFile = Join-Path $vectorRoot '.vector-runtime.json'
 $vectorUrl = 'http://localhost:3000/'
+$agentUrl = 'http://127.0.0.1:4317/health'
 
 function Test-VectorReady {
   try {
     $response = Invoke-WebRequest -Uri $vectorUrl -UseBasicParsing -TimeoutSec 2
-    return $response.StatusCode -eq 200
+    $agent = Invoke-WebRequest -Uri $agentUrl -UseBasicParsing -TimeoutSec 2
+    return $response.StatusCode -eq 200 -and $agent.StatusCode -eq 200
   } catch {
     return $false
   }
@@ -21,7 +23,7 @@ function Stop-RecordedVector {
     foreach ($saved in @($record.processes)) {
       $process = Get-Process -Id ([int]$saved.pid) -ErrorAction SilentlyContinue
       if ($process -and $process.ProcessName -eq $saved.name -and $process.StartTime.ToUniversalTime().Ticks -eq [int64]$saved.startTimeUtcTicks) {
-        Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+        & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
       }
     }
   } finally { Remove-Item -LiteralPath $runtimeFile -Force -ErrorAction SilentlyContinue }
@@ -29,7 +31,6 @@ function Stop-RecordedVector {
 
 if (-not (Test-VectorReady)) {
   Stop-RecordedVector
-  $existingRuntimeIds = @(Get-Process -Name node,workerd -ErrorAction SilentlyContinue | ForEach-Object Id)
   $nodePath = (Get-Command node.exe -ErrorAction Stop).Source
   $vinextCli = Join-Path $presenceRoot 'node_modules\vinext\dist\cli.js'
   if (-not (Test-Path -LiteralPath $vinextCli)) {
@@ -38,7 +39,8 @@ if (-not (Test-VectorReady)) {
     & $npmPath ci --prefix $presenceRoot
     if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $vinextCli)) { throw 'Vector could not restore his locked application dependencies.' }
   }
-  $server = Start-Process -FilePath $nodePath -ArgumentList @($vinextCli,'dev','--host','127.0.0.1','--port','3000') -WorkingDirectory $presenceRoot -WindowStyle Hidden -PassThru
+  $runtimeScript = Join-Path $vectorRoot 'scripts\vector-runtime.cjs'
+  $server = Start-Process -FilePath $nodePath -ArgumentList @($runtimeScript) -WorkingDirectory $vectorRoot -WindowStyle Hidden -PassThru
   @{ processes = @(@{ pid = $server.Id; name = $server.ProcessName; startTimeUtcTicks = $server.StartTime.ToUniversalTime().Ticks }); startedAt = (Get-Date).ToUniversalTime().ToString('o') } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $runtimeFile -Encoding utf8
   $ready = $false
   foreach ($attempt in 1..120) {
@@ -46,8 +48,6 @@ if (-not (Test-VectorReady)) {
     if (Test-VectorReady) { $ready = $true; break }
     if ($server.HasExited) { break }
   }
-  $ownedProcesses = @(Get-Process -Name node,workerd -ErrorAction SilentlyContinue | Where-Object { $_.Id -notin $existingRuntimeIds } | ForEach-Object { @{ pid = $_.Id; name = $_.ProcessName; startTimeUtcTicks = $_.StartTime.ToUniversalTime().Ticks } })
-  @{ processes = $ownedProcesses; startedAt = (Get-Date).ToUniversalTime().ToString('o') } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $runtimeFile -Encoding utf8
   if (-not $ready) { Stop-RecordedVector; throw 'Vector did not become ready at http://localhost:3000/.' }
 }
 

@@ -6,6 +6,7 @@ PRESENCE_ROOT="$VECTOR_ROOT/presence"
 RUNTIME_FILE="$VECTOR_ROOT/.vector-runtime.pid"
 LOG_FILE="$VECTOR_ROOT/vector-runtime.log"
 VECTOR_URL="http://127.0.0.1:3000/"
+AGENT_URL="http://127.0.0.1:4317/health"
 OPEN_BROWSER=1
 
 if [ "${1:-}" = "--no-browser" ]; then
@@ -16,7 +17,8 @@ elif [ "$#" -gt 0 ]; then
 fi
 
 vector_ready() {
-  curl --fail --silent --show-error --max-time 2 "$VECTOR_URL" >/dev/null 2>&1
+  curl --fail --silent --show-error --max-time 2 "$VECTOR_URL" >/dev/null 2>&1 &&
+  curl --fail --silent --show-error --max-time 2 "$AGENT_URL" >/dev/null 2>&1
 }
 
 if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
@@ -38,8 +40,8 @@ if ! vector_ready; then
   fi
 
   (
-    cd "$PRESENCE_ROOT"
-    exec setsid npm run dev -- --host 127.0.0.1 --port 3000
+    cd "$VECTOR_ROOT"
+    exec setsid node scripts/vector-runtime.cjs
   ) >"$LOG_FILE" 2>&1 &
   SERVER_PID=$!
   if [ ! -r "/proc/$SERVER_PID/stat" ]; then

@@ -1,4 +1,5 @@
-export type Message = { id: string; role: 'user' | 'vector'; text: string; attachments?: string[] };
+export type ToolActivity = { kind: 'tool' | 'lifecycle'; status: 'running' | 'success' | 'error'; label: string; summary?: string };
+export type Message = { id: string; role: 'user' | 'vector'; text: string; attachments?: string[]; activity?: ToolActivity[] };
 
 export const WELCOME_MESSAGE: Message = {
   id: 'welcome',

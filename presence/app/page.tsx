@@ -4,22 +4,14 @@ import { DragEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'reac
 import { Cpu, FileText, FolderX, Image as ImageIcon, MessageSquarePlus, Mic, MicOff, Palette, Paperclip, Radio, RotateCcw, Send, Sparkles, Volume2, VolumeX, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Message, newConversation, resetConversationState } from '@/lib/conversation';
+import { Message, newConversation, resetConversationState, ToolActivity } from '@/lib/conversation';
 import { clearProjectTarget, resolveProjectTarget } from '@/lib/project-routing';
 import { attachmentKind, ChatAttachment, MAX_ATTACHMENTS, MAX_ATTACHMENT_BYTES } from '@/lib/attachments';
 import { ORIGINAL_PORTRAIT, portraitStyle, PortraitSettings, validatePortraitProposal } from '@/lib/portrait-lab';
 
 type RecognitionEvent = { results: ArrayLike<{ 0: { transcript: string } }> };
 type RecognitionLike = { continuous: boolean; interimResults: boolean; lang: string; start(): void; stop(): void; onresult: ((event: RecognitionEvent) => void) | null; onend: (() => void) | null; onerror: (() => void) | null };
-type RuntimeHealth = { ollama: boolean; model: string; modelAvailable: boolean; modelLoaded: boolean; ready: boolean };
-
-function safeFallback(input: string) {
-  const message = input.toLowerCase();
-  if (/who are you|your name/.test(message)) return 'I’m Vector—an aerospace mission companion and general problem-solving partner.';
-  if (/birthday|born/.test(message)) return 'My birthday is August 31, 2026.';
-  if (/hello|hi|hey/.test(message)) return 'Hello. My local reasoning system is temporarily unavailable, but I can still hear you.';
-  return `I heard you: “${input.trim()}” My local reasoning model is unavailable right now, so I have not claimed to perform any action.`;
-}
+type RuntimeHealth = { ollama: boolean; model: string; modelAvailable: boolean; modelLoaded: boolean; ready: boolean; state?: string };
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>(newConversation());
@@ -83,7 +75,7 @@ export default function Home() {
     let active = true;
     const check = async () => {
       try { const response = await fetch('/api/chat'); const payload = await response.json() as RuntimeHealth; if (active) setHealth(payload); }
-      catch { if (active) setHealth({ ollama: false, model: 'gemma3:4b', modelAvailable: false, modelLoaded: false, ready: false }); }
+      catch { if (active) setHealth({ ollama: false, model: 'unavailable', modelAvailable: false, modelLoaded: false, ready: false, state: 'agent_unavailable' }); }
     };
     check();
     const timer = window.setInterval(check, 15000);
@@ -156,22 +148,23 @@ export default function Home() {
     const text = draft.trim();
     if (!text && !attachments.length) return;
     const nextTarget = resolveProjectTarget(text, target);
-    if (nextTarget !== target) setTarget(nextTarget);
     const prompt = text || 'Please inspect the attached file and tell me what you observe.';
     const sentAttachments = attachments;
     const userMessage: Message = { id: crypto.randomUUID(), role: 'user', text: prompt, attachments: sentAttachments.map((file) => file.name) };
     const next = [...messages, userMessage];
     const generation = requestGeneration.current;
     setMessages(next); setDraft(''); setAttachments([]); setStatus('THINKING LOCALLY');
-    let reply: string;
+    let reply: string; let activity: ToolActivity[] = [];
     try {
       const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: next, target: nextTarget, attachments: sentAttachments }) });
-      const payload = await response.json() as { answer?: string; error?: string };
+      const payload = await response.json() as { answer?: string; error?: string; activity?: ToolActivity[]; project?: { root?: string } };
+      activity = payload.activity ?? [];
       if (!response.ok || !payload.answer) throw new Error(payload.error ?? 'Local reasoning did not answer.');
+      if (payload.project?.root) setTarget(payload.project.root);
       reply = payload.answer;
-    } catch { reply = safeFallback(prompt); }
+    } catch (error) { reply = error instanceof Error ? error.message : 'The local agent is unavailable. Your conversation and files were preserved.'; }
     if (generation !== requestGeneration.current) return;
-    setMessages((current) => [...current, { id: crypto.randomUUID(), role: 'vector', text: reply }]);
+    setMessages((current) => [...current, { id: crypto.randomUUID(), role: 'vector', text: reply, activity }]);
     setStatus('PROCESSING'); setTimeout(() => speak(reply), 180);
   }
 
@@ -181,10 +174,10 @@ export default function Home() {
   }
 
   return <main className="vector-shell"><div className="starfield" aria-hidden="true" />
-    <header className="mission-header"><a className="brand" href="#top" aria-label="Vector home"><span className="brand-mark"><span /></span><span><strong>VECTOR</strong><small>LOCAL PRESENCE / FLIGHT 001</small></span></a><div className={`runtime-health ${health?.ready ? 'online' : health?.ollama ? 'standby' : 'offline'}`} title={health?.ready ? `${health.model} is loaded and ready` : health?.modelAvailable ? `${health.model} is installed but not loaded` : 'Local model unavailable'}><Cpu size={13} /><span>{health?.ready ? `${health.model} READY` : health?.modelAvailable ? `${health.model} STANDBY` : health ? 'OLLAMA OFFLINE' : 'CHECKING MODEL'}</span></div><div className="system-state"><i /><span>{status}</span></div></header>
+    <header className="mission-header"><a className="brand" href="#top" aria-label="Vector home"><span className="brand-mark"><span /></span><span><strong>VECTOR</strong><small>LOCAL PRESENCE / FLIGHT 001</small></span></a><div className={`runtime-health ${health?.ready ? 'online' : health?.ollama ? 'standby' : 'offline'}`} title={health?.modelLoaded ? `${health.model} is loaded and ready` : health?.modelAvailable ? `${health.model} is available and will load on first use` : health?.ollama ? `${health.model} is not installed` : 'Local agent or Ollama unavailable'}><Cpu size={13} /><span>{health?.modelLoaded ? `${health.model} READY` : health?.modelAvailable ? `${health.model} AVAILABLE` : health?.ollama ? `${health.model} MISSING` : health ? 'AGENT OFFLINE' : 'CHECKING MODEL'}</span></div><div className="system-state"><i /><span>{status}</span></div></header>
     <section className="workspace" id="top"><div className={`presence-panel ${listening ? 'is-listening' : ''} ${status === 'TRANSMITTING' ? 'is-speaking' : ''}`}><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="portrait-frame"><img src="/vector.png" style={portraitStyle(portrait)} alt="Vector, a silver and black winged aerospace android with a blue illuminated visor" /><div className="scanline" /></div><div className="presence-copy"><p className="eyebrow"><Sparkles size={13} /> PRESENCE CONFIRMED</p><h1>Intelligence<br /><em>with wings.</em></h1><p>My visible form is animated by attention, voice, and the work we do together.</p></div><div className="telemetry"><div><span>VISION</span><b>ONLINE</b></div><div><span>SPEECH</span><b>{speechAvailable ? 'READY' : 'LIMITED'}</b></div><div><span>MIC</span><b>{recognitionAvailable ? 'READY' : 'LIMITED'}</b></div></div></div>
       <div className="conversation-panel"><div className="conversation-head"><div><p className="eyebrow"><Radio size={13} /> SECURE LOCAL CHANNEL</p><h2>Talk with Vector</h2>{target && <p className="target-label">TARGET: {target}</p>}</div><div className="conversation-tools"><Button variant="outline" onClick={startNewChat}><MessageSquarePlus /> New Chat</Button><Button variant="outline" onClick={() => setPortraitLabOpen(true)}><Palette /> Portrait Workshop</Button><Button variant="outline" onClick={() => setTarget(clearProjectTarget())} disabled={!target}><FolderX /> Clear Target</Button><Button className="voice-toggle" variant="outline" onClick={() => { setVoiceOn((value) => !value); speechSynthesis?.cancel(); }} aria-pressed={voiceOn}>{voiceOn ? <Volume2 /> : <VolumeX />}{voiceStatus}</Button></div></div>
-        <div className="message-log" ref={logRef} aria-live="polite">{messages.map((message) => <article key={message.id} className={`message ${message.role}`}><span>{message.role === 'vector' ? 'VECTOR' : 'YOU'}</span><p>{message.text}{message.attachments?.map((name) => <small className="message-attachment" key={name}><Paperclip size={11} />{name}</small>)}</p></article>)}</div>
+        <div className="message-log" ref={logRef} aria-live="polite">{messages.map((message) => <article key={message.id} className={`message ${message.role}`}><span>{message.role === 'vector' ? 'VECTOR' : 'YOU'}</span>{message.activity?.length ? <div className="tool-activity">{message.activity.map((item, index) => <div className={item.status} key={`${item.label}-${index}`}><b>{item.status === 'success' ? '✓' : item.status === 'error' ? '!' : '•'} {item.label}</b>{item.summary && <small>{item.summary}</small>}</div>)}</div> : null}<p>{message.text}{message.attachments?.map((name) => <small className="message-attachment" key={name}><Paperclip size={11} />{name}</small>)}</p></article>)}</div>
         <form className={`composer ${dragging ? 'is-dragging' : ''}`} onSubmit={submit} onDragEnter={(event) => { event.preventDefault(); setDragging(true); }} onDragOver={(event) => event.preventDefault()} onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setDragging(false); }} onDrop={dropFiles}>
           <input ref={fileInput} className="file-input" type="file" multiple onChange={(event) => { if (event.target.files) void addFiles(event.target.files); event.target.value = ''; }} />
           {dragging && <div className="drop-hint">Drop files for Vector to inspect</div>}

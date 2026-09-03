@@ -10,17 +10,18 @@ to the Continue extension. It contains no secrets and is safe to clone.
 2. Start Ollama and install the configured model:
 
    ```powershell
-   ollama pull qwen3:4b
+   ollama pull qwen2.5-coder:7b
+   ollama create qwen-coder-7b-local -f ollama/VectorCoder.Modelfile
    ```
 
 3. Open Vector's repository root in VS Code and reload the window.
-4. Open Continue, select **Vector Qwen3 4B**, and choose Agent mode for coding
+4. Open Continue, select **Vector Qwen2.5-Coder 7B**, and choose Agent mode for coding
    tasks. Continue loads files under `.continue/models` and `.continue/rules`
    automatically for this workspace.
 
 The model endpoint is `http://127.0.0.1:11434`, so prompts and code stay on the
-local machine. The 16K context limit is intentionally smaller than the model's
-maximum to reduce memory pressure and avoid Ollama allocation failures.
+local machine. The configured context target is 24K; reduce it through Vector's
+environment configuration if a CPU-only machine lacks sufficient memory.
 
 ## Diagnostics
 

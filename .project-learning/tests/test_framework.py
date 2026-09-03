@@ -27,7 +27,8 @@ class FrameworkTests(unittest.TestCase):
         _,db_path=self.fixture(); task=start_task("synthetic","test","run_test",db_path)
         self.assertTrue(finish_task(task["task_id"],{"result":"verified","observations":[{"content":"fact"}]},db_path)["changed"])
         self.assertFalse(finish_task(task["task_id"],{"result":"duplicate"},db_path)["changed"])
-        with connect(db_path) as db:self.assertEqual(db.execute("SELECT COUNT(*) FROM outcomes").fetchone()[0],1)
+        failed=start_task("failure","test","run_failure",db_path); self.assertEqual(finish_task(failed["task_id"],{"result":"not completed","success":False},db_path)["status"],"failed")
+        with connect(db_path) as db:self.assertEqual(db.execute("SELECT COUNT(*) FROM outcomes").fetchone()[0],2); self.assertEqual(db.execute("SELECT status FROM tasks WHERE task_id=?",(failed["task_id"],)).fetchone()[0],"failed")
     def test_dataset_dedup_and_chronological_split(self):
         directory,db_path=self.fixture()
         for index in range(5):

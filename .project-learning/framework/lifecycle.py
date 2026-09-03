@@ -43,10 +43,13 @@ def eligibility():
 def pre_task(request): return {**start_task(request),"health":assess_health(),"recovery":recovery_status(),"context":retrieve(request)}
 def post_task(task_id,result):
     completion=finish_task(task_id,{"result":result,"verification":"Python lifecycle post-task","success":True,"memory":[{"chunk_id":f"task_outcome_{task_id}","topic":"verified_task_outcome","content":result,"confidence":.8}]}); rebuild_memory(); health=assess_health(); recovery_status(); eligible=eligibility(); evaluation=evaluate(train()) if eligible["eligible"] else None; return {"completion":completion,"health":health,"eligibility":eligible,"evaluation":evaluation,"status":status()}
+def fail_task(task_id,result):
+    completion=finish_task(task_id,{"result":result,"verification":"Python lifecycle failed-task","success":False,"failures":[{"category":"agent_task","symptom":result,"status":"open"}]}); rebuild_memory(); health=assess_health(); recovery_status(); return {"completion":completion,"health":health,"status":status()}
 def run(operation,args):
     if operation=="bootstrap": return bootstrap()
     if operation=="pre-task": return pre_task(" ".join(args))
     if operation=="post-task": return post_task(args[0]," ".join(args[1:]) or "completed")
+    if operation=="fail-task": return fail_task(args[0]," ".join(args[1:]) or "failed")
     if operation=="health": return assess_health()
     if operation=="detect-stall":
         detected=detect_stall(json.loads(args[0]) if args else {})

@@ -3,9 +3,9 @@ version: 1.0.0
 schema: v1
 
 models:
-  - name: Vector Qwen3 4B
+  - name: Vector Qwen2.5-Coder 7B
     provider: ollama
-    model: qwen3:4b
+    model: qwen-coder-7b-local:latest
     apiBase: http://127.0.0.1:11434
     roles:
       - chat
@@ -15,7 +15,7 @@ models:
     capabilities:
       - tool_use
     defaultCompletionOptions:
-      contextLength: 16384
+      contextLength: 24576
       maxTokens: 4096
       temperature: 0.2
     autocompleteOptions:
